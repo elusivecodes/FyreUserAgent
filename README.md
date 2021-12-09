@@ -15,7 +15,7 @@
 **Using Composer**
 
 ```
-composer install fyre/useragent
+composer require fyre/useragent
 ```
 
 In PHP:
