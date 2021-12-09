@@ -10,7 +10,7 @@ use
 final class UserAgentTest extends TestCase
 {
 
-    public function testUserAgentGetAgentStringDesktop(): void
+    public function testGetAgentStringDesktop(): void
     {
         $this->assertEquals(
             'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36',
@@ -18,7 +18,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetAgentStringMobile(): void
+    public function testGetAgentStringMobile(): void
     {
         $this->assertEquals(
             'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
@@ -26,7 +26,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetAgentStringRobot(): void
+    public function testGetAgentStringRobot(): void
     {
         $this->assertEquals(
             'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
@@ -34,7 +34,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetBrowserDesktop(): void
+    public function testGetBrowserDesktop(): void
     {
         $this->assertEquals(
             'Chrome',
@@ -42,7 +42,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetBrowserMobile(): void
+    public function testGetBrowserMobile(): void
     {
         $this->assertEquals(
             'Safari',
@@ -50,7 +50,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetBrowserRobot(): void
+    public function testGetBrowserRobot(): void
     {
         $this->assertEquals(
             null,
@@ -58,7 +58,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetMobileDesktop(): void
+    public function testGetMobileDesktop(): void
     {
         $this->assertEquals(
             null,
@@ -66,7 +66,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetMobileMobile(): void
+    public function testGetMobileMobile(): void
     {
         $this->assertEquals(
             'Apple iPhone',
@@ -74,7 +74,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetMobileRobot(): void
+    public function testGetMobileRobot(): void
     {
         $this->assertEquals(
             null,
@@ -82,7 +82,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetPlatformDesktop(): void
+    public function testGetPlatformDesktop(): void
     {
         $this->assertEquals(
             'Windows 7',
@@ -90,7 +90,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetPlatformMobile(): void
+    public function testGetPlatformMobile(): void
     {
         $this->assertEquals(
             'iOS',
@@ -98,7 +98,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetPlatformRobot(): void
+    public function testGetPlatformRobot(): void
     {
         $this->assertEquals(
             'Unknown Platform',
@@ -106,7 +106,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetRobotDesktop(): void
+    public function testGetRobotDesktop(): void
     {
         $this->assertEquals(
             null,
@@ -114,7 +114,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetRobotMobile(): void
+    public function testGetRobotMobile(): void
     {
         $this->assertEquals(
             null,
@@ -122,7 +122,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetRobotRobot(): void
+    public function testGetRobotRobot(): void
     {
         $this->assertEquals(
             'Googlebot',
@@ -130,7 +130,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetVersionDesktop(): void
+    public function testGetVersionDesktop(): void
     {
         $this->assertEquals(
             '47.0.2526.111',
@@ -138,7 +138,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetVersionMobile(): void
+    public function testGetVersionMobile(): void
     {
         $this->assertEquals(
             '604.1',
@@ -146,7 +146,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentGetVersionRobot(): void
+    public function testGetVersionRobot(): void
     {
         $this->assertEquals(
             null,
@@ -154,7 +154,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsBrowserDesktop(): void
+    public function testIsBrowserDesktop(): void
     {
         $this->assertEquals(
             true,
@@ -162,7 +162,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsBrowserMobile(): void
+    public function testIsBrowserMobile(): void
     {
         $this->assertEquals(
             true,
@@ -170,7 +170,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsBrowserRobot(): void
+    public function testIsBrowserRobot(): void
     {
         $this->assertEquals(
             false,
@@ -178,7 +178,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsMobileDesktop(): void
+    public function testIsMobileDesktop(): void
     {
         $this->assertEquals(
             false,
@@ -186,7 +186,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsMobileMobile(): void
+    public function testIsMobileMobile(): void
     {
         $this->assertEquals(
             true,
@@ -194,7 +194,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsMobileRobot(): void
+    public function testIsMobileRobot(): void
     {
         $this->assertEquals(
             false,
@@ -202,7 +202,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsRobotDesktop(): void
+    public function testIsRobotDesktop(): void
     {
         $this->assertEquals(
             false,
@@ -210,7 +210,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsRobotMobile(): void
+    public function testIsRobotMobile(): void
     {
         $this->assertEquals(
             false,
@@ -218,7 +218,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentIsRobotRobot(): void
+    public function testIsRobotRobot(): void
     {
         $this->assertEquals(
             true,
@@ -226,7 +226,7 @@ final class UserAgentTest extends TestCase
         );
     }
 
-    public function testUserAgentSetAgentString(): void
+    public function testSetAgentString(): void
     {
         $userAgent = new UserAgent('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36');
 
