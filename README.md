@@ -21,7 +21,7 @@ composer require fyre/useragent
 In PHP:
 
 ```php
-use Fyre\UserAgent\UserAgent;
+use Fyre\Http\UserAgent;
 ```
 
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Tests;
 
 use
-    Fyre\UserAgent\UserAgent,
+    Fyre\Http\UserAgent,
     PHPUnit\Framework\TestCase;
 
 final class UserAgentTest extends TestCase
