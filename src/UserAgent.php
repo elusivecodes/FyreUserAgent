@@ -313,7 +313,7 @@ class UserAgent
      * @param string $agent The user agent string.
      * @return UserAgent The UserAgent.
      */
-    public function setAgentString(string $agent): self
+    public function setAgentString(string $agent): static
     {
         $this->agent = $agent;
         $this->browser = null;
