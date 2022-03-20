@@ -211,7 +211,7 @@ class UserAgent
 
     /**
      * New UserAgent constructor.
-     * @param array $config The UserAgent config.
+     * @param string $agent The user agent string.
      */
     public function __construct(string $agent = '')
     {
