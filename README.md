@@ -1,6 +1,6 @@
 # FyreUserAgent
 
-**FyreUserAgent** is a free, user agent library for *PHP*.
+**FyreUserAgent** is a free, open-source user agent library for *PHP*.
 
 
 ## Table Of Contents
@@ -31,6 +31,12 @@ use Fyre\Http\UserAgent;
 
 ```php
 $userAgent = new UserAgent($agent);
+```
+
+Alternatively, you can use the `fromString` method for easier chaining.
+
+```php
+$userAgent = UserAgent::fromString($agent);
 ```
 
 
@@ -106,14 +112,4 @@ Determine if the user agent is a robot.
 
 ```php
 $isRobot = $userAgent->isRobot();
-```
-
-**Set Agent String**
-
-Set the user agent string.
-
-- `$agent` is a string representing the user agent.
-
-```php
-$userAgent->setAgentString($agent);
 ```

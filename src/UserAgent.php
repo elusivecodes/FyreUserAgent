@@ -3,9 +3,8 @@ declare(strict_types=1);
 
 namespace Fyre\Http;
 
-use function
-    preg_match,
-    preg_quote;
+use function preg_match;
+use function preg_quote;
 
 /**
  * UserAgent
@@ -203,11 +202,21 @@ class UserAgent
 
     protected string $agent = '';
 
-    protected string $platform = '';
+    protected string $platform = 'Unknown Platform';
     protected string|null $browser = null;
     protected string|null $version = null;
     protected string|null $mobile = null;
     protected string|null $robot = null;
+
+    /**
+     * Create a new UserAgent.
+     * @param string $agent The user agent string.
+     * 
+     */
+    public static function fromString(string $agent = ''): static
+    {
+        return new static($agent);
+    }
 
     /**
      * New UserAgent constructor.
@@ -215,7 +224,16 @@ class UserAgent
      */
     public function __construct(string $agent = '')
     {
-        $this->setAgentString($agent);
+        $this->agent = $agent;
+
+        if (!$this->agent) {
+            return;
+        }
+
+        $this->checkPlatform();
+        $this->checkMobile();
+        $this->checkRobot();
+        $this->checkBrowser();
     }
 
     /**
@@ -309,97 +327,69 @@ class UserAgent
     }
 
     /**
-     * Set the user agent string.
-     * @param string $agent The user agent string.
-     * @return UserAgent The UserAgent.
-     */
-    public function setAgentString(string $agent): static
-    {
-        $this->agent = $agent;
-        $this->browser = null;
-        $this->version = null;
-        $this->mobile = null;
-        $this->robot = null;
-
-        $this->checkPlatform();
-
-        if ($this->agent) { 
-            $this->checkRobot() || $this->checkBrowser();
-            $this->checkMobile();
-        }
-
-        return $this;
-    }
-
-    /**
      * Check the user agent for a browser.
-     * @return bool TRUE if the agent matches a browser, otherwise FALSE.
      */
-    protected function checkBrowser(): bool
+    protected function checkBrowser(): void
     {
-        foreach (static::BROWSERS AS $key => $value) {
-            if (preg_match('/'.preg_quote($key).'.*?([0-9\.]+)/i', $this->agent, $match)) {
-                $this->version = $match[1];
-                $this->browser = $value;
-
-                return true;
-            }
+        if ($this->robot) {
+            return;
         }
 
-        return false;
+        foreach (static::BROWSERS AS $key => $value) {
+            if (!preg_match('/'.preg_quote($key).'.*?([0-9\.]+)/i', $this->agent, $match)) {
+                continue;
+            }
+
+            $this->version = $match[1];
+            $this->browser = $value;
+            break;
+        }
     }
 
     /**
      * Check the user agent for a mobile.
-     * @return bool TRUE if the agent matches a mobile, otherwise FALSE.
      */
-    protected function checkMobile(): bool
+    protected function checkMobile(): void
     {
         foreach (static::MOBILES AS $key => $value) {
-            if (preg_match('/'.preg_quote($key).'/i', $this->agent)) {
-                $this->mobile = $value;
-
-                return true;
+            if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
+                continue;
             }
-        }
 
-        return false;
+            $this->mobile = $value;
+            break;
+        }
     }
 
     /**
      * Check the user agent platform.
-     * @return bool TRUE if the agent matches a platform, otherwise FALSE.
      */
-    protected function checkPlatform(): bool
+    protected function checkPlatform(): void
     {
         foreach (static::PLATFORMS AS $key => $value) {
-            if (preg_match('/'.preg_quote($key).'/i', $this->agent)) {
-                $this->platform = $value;
-
-                return true;
+            if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
+                continue;
             }
+
+            $this->platform = $value;
+
+            break;
         }
-
-        $this->platform = 'Unknown Platform';
-
-        return false;
     }
 
     /**
      * Check the user agent for a robot.
-     * @return bool TRUE if the agent matches a robot, otherwise FALSE.
      */
-    protected function checkRobot(): bool
+    protected function checkRobot(): void
     {
         foreach (static::ROBOTS AS $key => $value) {
-            if (preg_match('/'.preg_quote($key).'/i', $this->agent)) {
-                $this->robot = $value;
-
-                return true;
+            if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
+                continue;
             }
-        }
 
-        return false;
+            $this->robot = $value;
+            break;
+        }
     }
 
 }
