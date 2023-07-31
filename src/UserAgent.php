@@ -211,7 +211,7 @@ class UserAgent
     /**
      * Create a new UserAgent.
      * @param string $agent The user agent string.
-     * 
+     * @return UserAgent A new UserAgent.
      */
     public static function fromString(string $agent = ''): static
     {
