@@ -11,53 +11,7 @@ use function preg_quote;
  */
 class UserAgent
 {
-
-    const PLATFORMS = [
-        'windows nt 10.0' => 'Windows 10',
-        'windows nt 6.3' => 'Windows 8.1',
-        'windows nt 6.2' => 'Windows 8',
-        'windows nt 6.1' => 'Windows 7',
-        'windows nt 6.0' => 'Windows Vista',
-        'windows nt 5.2' => 'Windows 2003',
-        'windows nt 5.1' => 'Windows XP',
-        'windows nt 5.0' => 'Windows 2000',
-        'windows nt 4.0' => 'Windows NT 4.0',
-        'winnt4.0' => 'Windows NT 4.0',
-        'winnt 4.0' => 'Windows NT',
-        'winnt' => 'Windows NT',
-        'windows 98' => 'Windows 98',
-        'win98' => 'Windows 98',
-        'windows 95' => 'Windows 95',
-        'win95' => 'Windows 95',
-        'windows phone' => 'Windows Phone',
-        'windows' => 'Unknown Windows OS',
-        'android' => 'Android',
-        'blackberry' => 'BlackBerry',
-        'iphone' => 'iOS',
-        'ipad' => 'iOS',
-        'ipod' => 'iOS',
-        'os x' => 'Mac OS X',
-        'ppc mac' => 'Power PC Mac',
-        'freebsd' => 'FreeBSD',
-        'ppc' => 'Macintosh',
-        'linux' => 'Linux',
-        'debian' => 'Debian',
-        'sunos' => 'Sun Solaris',
-        'beos' => 'BeOS',
-        'apachebench' => 'ApacheBench',
-        'aix' => 'AIX',
-        'irix' => 'Irix',
-        'osf' => 'DEC OSF',
-        'hp-ux' => 'HP-UX',
-        'netbsd' => 'NetBSD',
-        'bsdi' => 'BSDi',
-        'openbsd' => 'OpenBSD',
-        'gnu' => 'GNU/Linux',
-        'unix' => 'Unknown Unix OS',
-        'symbian' => 'Symbian OS'
-    ];
-
-    const BROWSERS = [
+    public const BROWSERS = [
         'OPR' => 'Opera',
         'Flock' => 'Flock',
         'Edge' => 'Spartan',
@@ -90,7 +44,7 @@ class UserAgent
         'Vivaldi' => 'Vivaldi'
     ];
 
-    const MOBILES = [
+    public const MOBILES = [
         'mobileexplorer' => 'Mobile Explorer',
         'palmsource' => 'Palm',
         'palmscape' => 'Palmscape',
@@ -178,7 +132,52 @@ class UserAgent
         'cellphone' => 'Generic Mobile'
     ];
 
-    const ROBOTS = [
+    public const PLATFORMS = [
+        'windows nt 10.0' => 'Windows 10',
+        'windows nt 6.3' => 'Windows 8.1',
+        'windows nt 6.2' => 'Windows 8',
+        'windows nt 6.1' => 'Windows 7',
+        'windows nt 6.0' => 'Windows Vista',
+        'windows nt 5.2' => 'Windows 2003',
+        'windows nt 5.1' => 'Windows XP',
+        'windows nt 5.0' => 'Windows 2000',
+        'windows nt 4.0' => 'Windows NT 4.0',
+        'winnt4.0' => 'Windows NT 4.0',
+        'winnt 4.0' => 'Windows NT',
+        'winnt' => 'Windows NT',
+        'windows 98' => 'Windows 98',
+        'win98' => 'Windows 98',
+        'windows 95' => 'Windows 95',
+        'win95' => 'Windows 95',
+        'windows phone' => 'Windows Phone',
+        'windows' => 'Unknown Windows OS',
+        'android' => 'Android',
+        'blackberry' => 'BlackBerry',
+        'iphone' => 'iOS',
+        'ipad' => 'iOS',
+        'ipod' => 'iOS',
+        'os x' => 'Mac OS X',
+        'ppc mac' => 'Power PC Mac',
+        'freebsd' => 'FreeBSD',
+        'ppc' => 'Macintosh',
+        'linux' => 'Linux',
+        'debian' => 'Debian',
+        'sunos' => 'Sun Solaris',
+        'beos' => 'BeOS',
+        'apachebench' => 'ApacheBench',
+        'aix' => 'AIX',
+        'irix' => 'Irix',
+        'osf' => 'DEC OSF',
+        'hp-ux' => 'HP-UX',
+        'netbsd' => 'NetBSD',
+        'bsdi' => 'BSDi',
+        'openbsd' => 'OpenBSD',
+        'gnu' => 'GNU/Linux',
+        'unix' => 'Unknown Unix OS',
+        'symbian' => 'Symbian OS'
+    ];
+
+    public const ROBOTS = [
         'googlebot' => 'Googlebot',
         'msnbot' => 'MSNBot',
         'baiduspider' => 'Baiduspider',
@@ -201,22 +200,11 @@ class UserAgent
     ];
 
     protected string $agent = '';
-
-    protected string $platform = 'Unknown Platform';
     protected string|null $browser = null;
-    protected string|null $version = null;
     protected string|null $mobile = null;
+    protected string $platform = 'Unknown Platform';
     protected string|null $robot = null;
-
-    /**
-     * Create a new UserAgent.
-     * @param string $agent The user agent string.
-     * @return UserAgent A new UserAgent.
-     */
-    public static function fromString(string $agent = ''): static
-    {
-        return new static($agent);
-    }
+    protected string|null $version = null;
 
     /**
      * New UserAgent constructor.
@@ -243,6 +231,16 @@ class UserAgent
     public function __toString(): string
     {
         return $this->getAgentString();
+    }
+
+    /**
+     * Create a new UserAgent.
+     * @param string $agent The user agent string.
+     * @return UserAgent A new UserAgent.
+     */
+    public static function fromString(string $agent = ''): static
+    {
+        return new static($agent);
     }
 
     /**
@@ -335,7 +333,7 @@ class UserAgent
             return;
         }
 
-        foreach (static::BROWSERS AS $key => $value) {
+        foreach (static::BROWSERS as $key => $value) {
             if (!preg_match('/'.preg_quote($key).'.*?([0-9\.]+)/i', $this->agent, $match)) {
                 continue;
             }
@@ -351,7 +349,7 @@ class UserAgent
      */
     protected function checkMobile(): void
     {
-        foreach (static::MOBILES AS $key => $value) {
+        foreach (static::MOBILES as $key => $value) {
             if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
                 continue;
             }
@@ -366,7 +364,7 @@ class UserAgent
      */
     protected function checkPlatform(): void
     {
-        foreach (static::PLATFORMS AS $key => $value) {
+        foreach (static::PLATFORMS as $key => $value) {
             if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
                 continue;
             }
@@ -382,7 +380,7 @@ class UserAgent
      */
     protected function checkRobot(): void
     {
-        foreach (static::ROBOTS AS $key => $value) {
+        foreach (static::ROBOTS as $key => $value) {
             if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
                 continue;
             }
@@ -391,5 +389,4 @@ class UserAgent
             break;
         }
     }
-
 }

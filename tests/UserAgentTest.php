@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 
 final class UserAgentTest extends TestCase
 {
-
     public function testGetAgentStringDesktop(): void
     {
         $this->assertSame(
@@ -236,5 +235,4 @@ final class UserAgentTest extends TestCase
                 ->isRobot()
         );
     }
-
 }
