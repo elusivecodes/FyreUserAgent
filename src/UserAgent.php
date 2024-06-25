@@ -41,7 +41,7 @@ class UserAgent
         'IBrowse' => 'IBrowse',
         'Maxthon' => 'Maxthon',
         'Ubuntu' => 'Ubuntu Web Browser',
-        'Vivaldi' => 'Vivaldi'
+        'Vivaldi' => 'Vivaldi',
     ];
 
     public const MOBILES = [
@@ -129,7 +129,7 @@ class UserAgent
         'up.link' => 'Generic Mobile',
         'up.browser' => 'Generic Mobile',
         'smartphone' => 'Generic Mobile',
-        'cellphone' => 'Generic Mobile'
+        'cellphone' => 'Generic Mobile',
     ];
 
     public const PLATFORMS = [
@@ -174,7 +174,7 @@ class UserAgent
         'openbsd' => 'OpenBSD',
         'gnu' => 'GNU/Linux',
         'unix' => 'Unknown Unix OS',
-        'symbian' => 'Symbian OS'
+        'symbian' => 'Symbian OS',
     ];
 
     public const ROBOTS = [
@@ -196,18 +196,35 @@ class UserAgent
         'curious george' => 'Curious George',
         'ia_archiver' => 'Alexa Crawler',
         'MJ12bot' => 'Majestic-12',
-        'Uptimebot' => 'Uptimebot'
+        'Uptimebot' => 'Uptimebot',
     ];
 
     protected string $agent = '';
+
     protected string|null $browser = null;
+
     protected string|null $mobile = null;
+
     protected string $platform = 'Unknown Platform';
+
     protected string|null $robot = null;
+
     protected string|null $version = null;
 
     /**
+     * Create a new UserAgent.
+     *
+     * @param string $agent The user agent string.
+     * @return UserAgent A new UserAgent.
+     */
+    public static function fromString(string $agent = ''): static
+    {
+        return new static($agent);
+    }
+
+    /**
      * New UserAgent constructor.
+     *
      * @param string $agent The user agent string.
      */
     public function __construct(string $agent = '')
@@ -226,6 +243,7 @@ class UserAgent
 
     /**
      * Get the user agent string.
+     *
      * @return string The user agent string.
      */
     public function __toString(): string
@@ -234,17 +252,8 @@ class UserAgent
     }
 
     /**
-     * Create a new UserAgent.
-     * @param string $agent The user agent string.
-     * @return UserAgent A new UserAgent.
-     */
-    public static function fromString(string $agent = ''): static
-    {
-        return new static($agent);
-    }
-
-    /**
      * Get the user agent string.
+     *
      * @return string The user agent string.
      */
     public function getAgentString(): string
@@ -254,6 +263,7 @@ class UserAgent
 
     /**
      * Get the browser.
+     *
      * @return string|null The browser.
      */
     public function getBrowser(): string|null
@@ -263,6 +273,7 @@ class UserAgent
 
     /**
      * Get the mobile.
+     *
      * @return string|null The mobile.
      */
     public function getMobile(): string|null
@@ -272,6 +283,7 @@ class UserAgent
 
     /**
      * Get the platform.
+     *
      * @return string The platform.
      */
     public function getPlatform(): string
@@ -281,6 +293,7 @@ class UserAgent
 
     /**
      * Get the robot.
+     *
      * @return string|null The robot.
      */
     public function getRobot(): string|null
@@ -290,6 +303,7 @@ class UserAgent
 
     /**
      * Get the browser version.
+     *
      * @return string|null The browser version.
      */
     public function getVersion(): string|null
@@ -299,6 +313,7 @@ class UserAgent
 
     /**
      * Determine if the user agent is a browser.
+     *
      * @return bool TRUE if the user agent is a browser, otherwise FALSE.
      */
     public function isBrowser(): bool
@@ -308,6 +323,7 @@ class UserAgent
 
     /**
      * Determine if the user agent is a mobile.
+     *
      * @return bool TRUE if the user agent is a mobile, otherwise FALSE.
      */
     public function isMobile(): bool
@@ -317,6 +333,7 @@ class UserAgent
 
     /**
      * Determine if the user agent is a robot.
+     *
      * @return bool TRUE if the user agent is a robot, otherwise FALSE.
      */
     public function isRobot(): bool
