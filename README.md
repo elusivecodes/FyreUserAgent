@@ -5,8 +5,8 @@
 
 ## Table Of Contents
 - [Installation](#installation)
-- [User Agent Creation](#user-agent-creation)
-- [Methods](#methods)
+- [UserAgent Creation](#useragent-creation)
+- [UserAgent Methods](#useragent-methods)
 
 
 
@@ -25,7 +25,7 @@ use Fyre\Http\UserAgent;
 ```
 
 
-## User Agent Creation
+## UserAgent Creation
 
 - `$agent` is a string representing the user agent.
 
@@ -40,7 +40,7 @@ $userAgent = UserAgent::fromString($agent);
 ```
 
 
-## Methods
+## UserAgent Methods
 
 **Get Agent String**
 
@@ -92,7 +92,7 @@ $version = $userAgent->getVersion();
 
 **Is Browser**
 
-Determine if the user agent is a browser.
+Determine whether the user agent is a browser.
 
 ```php
 $isBrowser = $userAgent->isBrowser();
@@ -100,7 +100,7 @@ $isBrowser = $userAgent->isBrowser();
 
 **Is Mobile**
 
-Determine if the user agent is a mobile.
+Determine whether the user agent is a mobile.
 
 ```php
 $isMobile = $userAgent->isMobile();
@@ -108,7 +108,7 @@ $isMobile = $userAgent->isMobile();
 
 **Is Robot**
 
-Determine if the user agent is a robot.
+Determine whether the user agent is a robot.
 
 ```php
 $isRobot = $userAgent->isRobot();

@@ -203,11 +203,19 @@ class UserAgent
 
     protected string|null $browser = null;
 
+    protected bool $browserChecked = false;
+
     protected string|null $mobile = null;
+
+    protected bool $mobileChecked = false;
 
     protected string $platform = 'Unknown Platform';
 
+    protected bool $platformChecked = false;
+
     protected string|null $robot = null;
+
+    protected bool $robotChecked = false;
 
     protected string|null $version = null;
 
@@ -230,15 +238,6 @@ class UserAgent
     public function __construct(string $agent = '')
     {
         $this->agent = $agent;
-
-        if (!$this->agent) {
-            return;
-        }
-
-        $this->checkPlatform();
-        $this->checkMobile();
-        $this->checkRobot();
-        $this->checkBrowser();
     }
 
     /**
@@ -268,6 +267,8 @@ class UserAgent
      */
     public function getBrowser(): string|null
     {
+        $this->checkBrowser();
+
         return $this->browser;
     }
 
@@ -278,6 +279,8 @@ class UserAgent
      */
     public function getMobile(): string|null
     {
+        $this->checkMobile();
+
         return $this->mobile;
     }
 
@@ -288,6 +291,8 @@ class UserAgent
      */
     public function getPlatform(): string
     {
+        $this->checkPlatform();
+
         return $this->platform;
     }
 
@@ -298,6 +303,8 @@ class UserAgent
      */
     public function getRobot(): string|null
     {
+        $this->checkRobot();
+
         return $this->robot;
     }
 
@@ -308,6 +315,8 @@ class UserAgent
      */
     public function getVersion(): string|null
     {
+        $this->checkBrowser();
+
         return $this->version;
     }
 
@@ -318,6 +327,8 @@ class UserAgent
      */
     public function isBrowser(): bool
     {
+        $this->checkBrowser();
+
         return $this->browser !== null;
     }
 
@@ -328,6 +339,8 @@ class UserAgent
      */
     public function isMobile(): bool
     {
+        $this->checkMobile();
+
         return $this->mobile !== null;
     }
 
@@ -338,6 +351,8 @@ class UserAgent
      */
     public function isRobot(): bool
     {
+        $this->checkRobot();
+
         return $this->robot !== null;
     }
 
@@ -346,7 +361,9 @@ class UserAgent
      */
     protected function checkBrowser(): void
     {
-        if ($this->robot) {
+        $this->checkRobot();
+
+        if ($this->robot || $this->browserChecked) {
             return;
         }
 
@@ -359,6 +376,8 @@ class UserAgent
             $this->browser = $value;
             break;
         }
+
+        $this->browserChecked = true;
     }
 
     /**
@@ -366,6 +385,10 @@ class UserAgent
      */
     protected function checkMobile(): void
     {
+        if ($this->mobileChecked) {
+            return;
+        }
+
         foreach (static::MOBILES as $key => $value) {
             if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
                 continue;
@@ -374,6 +397,8 @@ class UserAgent
             $this->mobile = $value;
             break;
         }
+
+        $this->mobileChecked = true;
     }
 
     /**
@@ -381,15 +406,20 @@ class UserAgent
      */
     protected function checkPlatform(): void
     {
+        if ($this->platformChecked) {
+            return;
+        }
+
         foreach (static::PLATFORMS as $key => $value) {
             if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
                 continue;
             }
 
             $this->platform = $value;
-
             break;
         }
+
+        $this->platformChecked = true;
     }
 
     /**
@@ -397,6 +427,10 @@ class UserAgent
      */
     protected function checkRobot(): void
     {
+        if ($this->robotChecked) {
+            return;
+        }
+
         foreach (static::ROBOTS as $key => $value) {
             if (!preg_match('/'.preg_quote($key).'/i', $this->agent)) {
                 continue;
@@ -405,5 +439,7 @@ class UserAgent
             $this->robot = $value;
             break;
         }
+
+        $this->robotChecked = true;
     }
 }
