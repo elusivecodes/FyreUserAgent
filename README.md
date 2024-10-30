@@ -5,8 +5,8 @@
 
 ## Table Of Contents
 - [Installation](#installation)
-- [UserAgent Creation](#useragent-creation)
-- [UserAgent Methods](#useragent-methods)
+- [Basic Usage](#basic-usage)
+- [Methods](#methods)
 
 
 
@@ -25,7 +25,7 @@ use Fyre\Http\UserAgent;
 ```
 
 
-## UserAgent Creation
+## Basic Usage
 
 - `$agent` is a string representing the user agent.
 
@@ -40,7 +40,7 @@ $userAgent = UserAgent::fromString($agent);
 ```
 
 
-## UserAgent Methods
+## Methods
 
 **Get Agent String**
 
