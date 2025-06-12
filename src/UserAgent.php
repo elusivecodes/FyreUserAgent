@@ -199,8 +199,6 @@ class UserAgent
         'Uptimebot' => 'Uptimebot',
     ];
 
-    protected string $agent = '';
-
     protected string|null $browser = null;
 
     protected bool $browserChecked = false;
@@ -235,10 +233,9 @@ class UserAgent
      *
      * @param string $agent The user agent string.
      */
-    public function __construct(string $agent = '')
-    {
-        $this->agent = $agent;
-    }
+    public function __construct(
+        protected string $agent = ''
+    ) {}
 
     /**
      * Get the user agent string.
