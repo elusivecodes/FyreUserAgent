@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Fyre\Http;
 
+use Fyre\Utility\Traits\MacroTrait;
+
 use function preg_match;
 use function preg_quote;
 
@@ -11,6 +13,8 @@ use function preg_quote;
  */
 class UserAgent
 {
+    use MacroTrait;
+
     public const BROWSERS = [
         'OPR' => 'Opera',
         'Flock' => 'Flock',

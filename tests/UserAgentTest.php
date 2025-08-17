@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace Tests;
 
 use Fyre\Http\UserAgent;
+use Fyre\Utility\Traits\MacroTrait;
 use PHPUnit\Framework\TestCase;
+
+use function class_uses;
 
 final class UserAgentTest extends TestCase
 {
@@ -233,6 +236,14 @@ final class UserAgentTest extends TestCase
         $this->assertTrue(
             UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->isRobot()
+        );
+    }
+
+    public function testMacroable(): void
+    {
+        $this->assertContains(
+            MacroTrait::class,
+            class_uses(UserAgent::class)
         );
     }
 }
