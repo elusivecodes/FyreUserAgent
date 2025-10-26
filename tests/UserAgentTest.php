@@ -15,7 +15,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36',
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->getAgentString()
         );
     }
@@ -24,7 +24,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1',
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->getAgentString()
         );
     }
@@ -33,7 +33,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->getAgentString()
         );
     }
@@ -42,7 +42,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Chrome',
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->getBrowser()
         );
     }
@@ -51,7 +51,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Safari',
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->getBrowser()
         );
     }
@@ -59,7 +59,7 @@ final class UserAgentTest extends TestCase
     public function testGetBrowserRobot(): void
     {
         $this->assertNull(
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->getBrowser()
         );
     }
@@ -67,7 +67,7 @@ final class UserAgentTest extends TestCase
     public function testGetMobileDesktop(): void
     {
         $this->assertNull(
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->getMobile()
         );
     }
@@ -76,7 +76,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Apple iPhone',
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->getMobile()
         );
     }
@@ -84,7 +84,7 @@ final class UserAgentTest extends TestCase
     public function testGetMobileRobot(): void
     {
         $this->assertNull(
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->getMobile()
         );
     }
@@ -93,7 +93,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Windows 7',
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->getPlatform()
         );
     }
@@ -102,7 +102,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'iOS',
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->getPlatform()
         );
     }
@@ -111,7 +111,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Unknown Platform',
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->getPlatform()
         );
     }
@@ -119,7 +119,7 @@ final class UserAgentTest extends TestCase
     public function testGetRobotDesktop(): void
     {
         $this->assertNull(
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->getRobot()
         );
     }
@@ -127,7 +127,7 @@ final class UserAgentTest extends TestCase
     public function testGetRobotMobile(): void
     {
         $this->assertNull(
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->getRobot()
         );
     }
@@ -136,7 +136,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             'Googlebot',
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->getRobot()
         );
     }
@@ -145,7 +145,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             '47.0.2526.111',
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->getVersion()
         );
     }
@@ -154,7 +154,7 @@ final class UserAgentTest extends TestCase
     {
         $this->assertSame(
             '604.1',
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->getVersion()
         );
     }
@@ -162,7 +162,7 @@ final class UserAgentTest extends TestCase
     public function testGetVersionRobot(): void
     {
         $this->assertNull(
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->getVersion()
         );
     }
@@ -170,7 +170,7 @@ final class UserAgentTest extends TestCase
     public function testIsBrowserDesktop(): void
     {
         $this->assertTrue(
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->isBrowser()
         );
     }
@@ -178,7 +178,7 @@ final class UserAgentTest extends TestCase
     public function testIsBrowserMobile(): void
     {
         $this->assertTrue(
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->isBrowser()
         );
     }
@@ -186,7 +186,7 @@ final class UserAgentTest extends TestCase
     public function testIsBrowserRobot(): void
     {
         $this->assertFalse(
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->isBrowser()
         );
     }
@@ -194,7 +194,7 @@ final class UserAgentTest extends TestCase
     public function testIsMobileDesktop(): void
     {
         $this->assertFalse(
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36')
                 ->isMobile()
         );
     }
@@ -202,7 +202,7 @@ final class UserAgentTest extends TestCase
     public function testIsMobileMobile(): void
     {
         $this->assertTrue(
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->isMobile()
         );
     }
@@ -210,7 +210,7 @@ final class UserAgentTest extends TestCase
     public function testIsMobileRobot(): void
     {
         $this->assertFalse(
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->isMobile()
         );
     }
@@ -218,7 +218,7 @@ final class UserAgentTest extends TestCase
     public function testIsRobotDesktop(): void
     {
         $this->assertFalse(
-            UserAgent::fromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36)')
+            UserAgent::createFromString('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36)')
                 ->isRobot()
         );
     }
@@ -226,7 +226,7 @@ final class UserAgentTest extends TestCase
     public function testIsRobotMobile(): void
     {
         $this->assertFalse(
-            UserAgent::fromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
+            UserAgent::createFromString('Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1')
                 ->isRobot()
         );
     }
@@ -234,7 +234,7 @@ final class UserAgentTest extends TestCase
     public function testIsRobotRobot(): void
     {
         $this->assertTrue(
-            UserAgent::fromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
+            UserAgent::createFromString('Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)')
                 ->isRobot()
         );
     }

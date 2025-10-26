@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Fyre\Http;
 
 use Fyre\Utility\Traits\MacroTrait;
+use Stringable;
 
 use function preg_match;
 use function preg_quote;
@@ -11,7 +12,7 @@ use function preg_quote;
 /**
  * UserAgent
  */
-class UserAgent
+class UserAgent implements Stringable
 {
     use MacroTrait;
 
@@ -227,7 +228,7 @@ class UserAgent
      * @param string $agent The user agent string.
      * @return UserAgent A new UserAgent.
      */
-    public static function fromString(string $agent = ''): static
+    public static function createFromString(string $agent = ''): static
     {
         return new static($agent);
     }

@@ -33,10 +33,10 @@ use Fyre\Http\UserAgent;
 $userAgent = new UserAgent($agent);
 ```
 
-Alternatively, you can use the `fromString` method for easier chaining.
+Alternatively, you can use the `createFromString` method for easier chaining.
 
 ```php
-$userAgent = UserAgent::fromString($agent);
+$userAgent = UserAgent::createFromString($agent);
 ```
 
 
