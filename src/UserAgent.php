@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Fyre\Http;
 
 use Fyre\Utility\Traits\MacroTrait;
+use Override;
 use Stringable;
 
 use function preg_match;
@@ -247,6 +248,7 @@ class UserAgent implements Stringable
      *
      * @return string The user agent string.
      */
+    #[Override]
     public function __toString(): string
     {
         return $this->getAgentString();
